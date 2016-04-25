@@ -36,8 +36,12 @@ app.use(express.static('/public'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-/*app.use(cookie());
-app.use(session());*/
+app.use(cookie('cookie-secret-key'));
+app.use(session({
+    secret: 'session-secret-key',
+    resave: true,
+    saveUninitialized: true
+}));
 
 
 //6. routes

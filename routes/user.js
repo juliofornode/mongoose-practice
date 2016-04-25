@@ -14,7 +14,7 @@ exports.doCreate = function(req, res) {
       modifiedOn: Date.now(),
       lastLogin: Date.now()
     }, function(err, result) {
-      console.log("user created ", result);
+      console.log("user created: " + result);
     });
 };
 
