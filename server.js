@@ -1,5 +1,6 @@
 //1. dependencies
 var express = require('express');
+var logger = require('morgan');
 var db = require('./model/db.js');
 var routes = require('./routes');
 var user = require('./routes/user.js');
@@ -21,13 +22,14 @@ var app = express();
 
 
 //4. app configuration (app.set)
-//app.set('views', __dirname + '/views');
-//app.set('view engine', 'jade');
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
 app.set('port', process.env.PORT || 3000);
 var port = app.get('port');
 
 //5. middleware definition (app.use)
 app.use(express.static('/public'));
+app.use(logger('dev'));
 
 
 //6. routes
@@ -36,9 +38,11 @@ app.use(express.static('/public'));
 app.get('/', routes.index);
 
 
+app.get('/user/new', user.create);
+
 //USER ROUTES - current user is stored in session, so we do not need to use :user_id
 
-//1.Login
+/*//1.Login
 app.get('/login', user.login);
 app.post('/login', user.doLogin);
 
@@ -58,12 +62,12 @@ app.get('/user/delete', user.confirmDelete);
 app.post('/user/delete', user.doDelete);
 
 //6.Logout
-app.get('/logout', user.logout);
+app.get('/logout', user.logout);*/
 
 
 //PROJECT ROUTES - projects are not stored in sessions, so we do will need to use :project_id
 
-//1. create new project
+/*//1. create new project
 app.get('/project/new', project.create);
 app.post('/project/new', project.doCreate);
 
@@ -76,7 +80,7 @@ app.post('/project/edit/:id', project.doEdit);
 
 //4. delete one project
 app.get('/project/delete/:id', project.delete);
-app.post('/project/delete/:id', project.doDelete);
+app.post('/project/delete/:id', project.doDelete);*/
 
 
 

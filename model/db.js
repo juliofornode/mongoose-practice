@@ -61,16 +61,16 @@ console.log('the name of the userOne is ', userOne.name);
 userOne.save(function() {
     console.log('userOne has been saved in the database.');
     User.find({}, function(err, result) {
-        console.log('the users collection has now: ', JSON.stringify(result));
+        //console.log('the users collection has now: ', JSON.stringify(result));
     });
 });
 
-User.create({
+/*User.create({
     name: 'Albert',
     email: 'albert.einstein@nasa.com'
 }, function(err, result) {
     console.log(result.name + ' has been saved.');
-});
+});*/
 
 
 var projectOne = new Project({
@@ -79,7 +79,7 @@ var projectOne = new Project({
 
 projectOne.save(function(err, result) {
     Project.find({}, function(err, result) {
-        console.log('the saved projects are: ', JSON.stringify(result));
+        //console.log('the saved projects are: ', JSON.stringify(result));
     });
 });
 

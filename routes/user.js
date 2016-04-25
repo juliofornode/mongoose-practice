@@ -2,6 +2,11 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 
+exports.create = function(req, res) {
+    res.render('user-form', {title: "This is the text for the h1 tag", buttonText: "Hello!"});
+};
+
+
 //Routes
 
 //1.Login
