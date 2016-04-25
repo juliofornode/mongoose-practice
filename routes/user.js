@@ -8,9 +8,14 @@ exports.create = function(req, res) {
 
 
 exports.doCreate = function(req, res) {
-  var user = {};
-    user.name = req.session.name;
-    user.email = req.session.name;
+  User.create({
+      name: req.body.name,
+      email: req.body.name,
+      modifiedOn: Date.now(),
+      lastLogin: Date.now()
+    }, function(err, result) {
+      console.log("user created ", result);
+    });
 };
 
 

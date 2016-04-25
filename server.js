@@ -35,9 +35,9 @@ var port = app.get('port');
 app.use(express.static('/public'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoder({extended: false}));
-app.use(cookie());
-app.use(session());
+app.use(bodyParser.urlencoded({extended: false}));
+/*app.use(cookie());
+app.use(session());*/
 
 
 //6. routes
