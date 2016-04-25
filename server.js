@@ -36,7 +36,7 @@ app.use(express.static('/public'));
 app.get('/', routes.index);
 
 
-//USER ROUTES
+//USER ROUTES - current user is stored in session, so we do not need to use :user_id
 
 //1.Login
 app.get('/login', user.login);
@@ -59,6 +59,29 @@ app.post('/user/delete', user.doDelete);
 
 //6.Logout
 app.get('/logout', user.logout);
+
+
+//PROJECT ROUTES - projects are not stored in sessions, so we do will need to use :project_id
+
+//1. create new project
+app.get('/project/new', project.create);
+app.post('/project/new', project.doCreate);
+
+//2. display one project
+app.get('/project/:project_id', project.displayInfo);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //catch-all route
