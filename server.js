@@ -1,6 +1,8 @@
 //1. dependencies
 var express = require('express');
 var db = require('./model/db.js');
+var users = require('./routes/users.js');
+var projects = require('./routes/projects.js');
 //var bodyParser = require('body-parser');
 //var cookie = require('cookie-parser');
 //var session = require('express-session');
