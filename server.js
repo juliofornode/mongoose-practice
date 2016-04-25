@@ -1,6 +1,6 @@
 //1. dependencies
 var express = require('express');
-//var mongoose = require('mongoose');
+var db = require('./model/db.js');
 //var bodyParser = require('body-parser');
 //var cookie = require('cookie-parser');
 //var session = require('express-session');
