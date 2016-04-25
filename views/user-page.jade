@@ -1,0 +1,14 @@
+extend layout
+
+block content
+  h1=name
+  p #{email}
+  ul
+    li
+      a(href="/project/new") New Project
+    li
+      a(href="/user/edit") Edit User Profile
+    li
+      a(href="/user/delete") Delete User Profile
+    li
+      a(href="/logout") Logout

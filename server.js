@@ -50,8 +50,23 @@ app.use(session({
 app.get('/', routes.index);
 
 
+
+//USER ROUTES - current user is stored in session, so we do not need to use :user_id
+
+//Create User profile
 app.get('/user/new', user.create);
 app.post('/user/new', user.doCreate);
+
+
+//Display Current User profile
+app.get('/user', user.index);
+
+
+//PROJECT ROUTES - projects are not stored in sessions, so we do will need to use :project_id
+
+//create new project
+app.get('/project/new', project.create);
+app.post('/project/new', project.doCreate);
 
 
 //USER ROUTES - current user is stored in session, so we do not need to use :user_id
