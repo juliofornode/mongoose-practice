@@ -7,6 +7,14 @@ exports.create = function(req, res) {
 };
 
 
+exports.doCreate = function(req, res) {
+  var user = {};
+    user.name = req.session.name;
+    user.email = req.session.name;
+};
+
+
+
 //Routes
 
 //1.Login

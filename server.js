@@ -1,6 +1,10 @@
 //1. dependencies
 var express = require('express');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
+var cookie = require('cookie-parser');
+var session = require('express-session');
+
 var db = require('./model/db.js');
 var routes = require('./routes');
 var user = require('./routes/user.js');
@@ -30,6 +34,10 @@ var port = app.get('port');
 //5. middleware definition (app.use)
 app.use(express.static('/public'));
 app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoder({extended: false}));
+app.use(cookie());
+app.use(session());
 
 
 //6. routes
@@ -39,6 +47,8 @@ app.get('/', routes.index);
 
 
 app.get('/user/new', user.create);
+app.post('/user/new', user.doCreate);
+
 
 //USER ROUTES - current user is stored in session, so we do not need to use :user_id
 
