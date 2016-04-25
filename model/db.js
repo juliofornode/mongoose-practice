@@ -39,7 +39,8 @@ var projectSchema = new mongoose.Schema({
     tasks: String,
     modifiedOn: {type: Date, default: Date.now},
     createdOn: Date
-});
+    },
+    {collection: 'projectsCollection'});
 
 var Project = mongoose.model('Project', projectSchema);
 
@@ -49,10 +50,25 @@ var userOne = new User({
 });
 
 console.log('the name of the userOne is ', userOne.name);
+
 userOne.save(function() {
     console.log('userOne has been saved in the database.');
+    User.find({}, function(err, result) {
+        console.log('the users collection has now: ', JSON.stringify(result));
+    });
 });
 
-User.find(function(err, result) {
-    console.log('the database has now: ', result);
+var projectOne = new Project({
+    projectName: 'proyecto uno'
 });
+
+projectOne.save(function(err, result) {
+    Project.find({}, function(err, result) {
+        console.log('the saved projects are: ', JSON.stringify(result));
+    });
+});
+
+
+
+
+
