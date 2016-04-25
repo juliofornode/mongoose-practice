@@ -65,6 +65,14 @@ userOne.save(function() {
     });
 });
 
+User.create({
+    name: 'Albert',
+    email: 'albert.einstein@nasa.com'
+}, function(err, result) {
+    console.log(result.name + ' has been saved.');
+});
+
+
 var projectOne = new Project({
     projectName: 'proyecto uno'
 });

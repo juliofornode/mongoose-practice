@@ -68,9 +68,15 @@ app.get('/project/new', project.create);
 app.post('/project/new', project.doCreate);
 
 //2. display one project
-app.get('/project/:project_id', project.displayInfo);
+app.get('/project/:id', project.displayInfo);
 
+//3. edit one project
+app.get('/project/edit/:id', project.edit);
+app.post('/project/edit/:id', project.doEdit);
 
+//4. delete one project
+app.get('/project/delete/:id', project.delete);
+app.post('/project/delete/:id', project.doDelete);
 
 
 
