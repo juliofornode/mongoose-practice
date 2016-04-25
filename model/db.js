@@ -1,7 +1,14 @@
 var mongoose = require('mongoose');
 var dbUri = 'mongodb://localhost/mongoose001';
 mongoose.connect(dbUri);
-//mongoose.createConnection(dbUri);
+
+//alternative:
+//var dbUri2 = 'mongodb://localhost/mongoose002',
+//var adminConnection = mongoose.createConnection(dbUri2);
+
+//why it does not work:
+//http://stackoverflow.com/questions/22786374/queries-hang-when-using-mongoose-createconnection-vs-mongoose-connect
+
 
 mongoose.connection.on('connected', function() {
     console.log('the db is now connected.');
