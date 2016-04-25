@@ -1,8 +1,9 @@
 //1. dependencies
 var express = require('express');
 var db = require('./model/db.js');
-var users = require('./routes/users.js');
-var projects = require('./routes/projects.js');
+var routes = require('./routes');
+var user = require('./routes/user.js');
+var project = require('./routes/project.js');
 //var bodyParser = require('body-parser');
 //var cookie = require('cookie-parser');
 //var session = require('express-session');
@@ -30,9 +31,34 @@ app.use(express.static('/public'));
 
 
 //6. routes
-app.get('/', function(req, res) {
-    res.send('this is the home page.');
-});
+
+//GENERIC ROUTES
+app.get('/', routes.index);
+
+
+//USER ROUTES
+
+//1.Login
+app.get('/login', user.login);
+app.post('/login', user.doLogin);
+
+//2.Create User profile
+app.get('/user/new', user.create);
+app.post('/user/new', user.doCreate);
+
+//3.Display Current User profile
+app.get('/user', user.index);
+
+//4.Edit Current User profile
+app.get('/user/edit', user.edit);
+app.post('/user/edit', user.doEdit);
+
+//5.Delete Current User profile
+app.get('/user/delete', user.confirmDelete);
+app.post('/user/delete', user.doDelete);
+
+//6.Logout
+app.get('/logout', user.logout);
 
 
 //catch-all route
