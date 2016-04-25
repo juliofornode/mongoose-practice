@@ -49,3 +49,10 @@ var userOne = new User({
 });
 
 console.log('the name of the userOne is ', userOne.name);
+userOne.save(function() {
+    console.log('userOne has been saved in the database.');
+});
+
+User.find(function(err, result) {
+    console.log('the database has now: ', result);
+});
