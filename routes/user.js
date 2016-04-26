@@ -47,10 +47,11 @@ exports.login = function(req, res) {
 };
 
 exports.doLogin = function(req, res) {
-  if(req.body.email === req.session.user.email) {
-      res.send('you are loged in');
-  } else {
-      res.redirect('/login');
+    console.log("you have entered: " + req.body.Email + " and our records show: " + req.session.user.email);
+    if(req.body.Email === req.session.user.email) {
+        res.send('you are loged in');
+    } else {
+        res.redirect('/login');
   };
 };
 
