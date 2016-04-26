@@ -47,21 +47,32 @@ exports.login = function(req, res) {
 };
 
 exports.doLogin = function(req, res) {
-    User.findOne({'email': req.body.Email},
-        '_id name email',
-        function(err, result) {
-        console.log("result :" + result);
-        if(err) {
-            res.send('email not found, try again');
-        } else {
-            req.session.user = {
-                name: result.name,
-                email: result.email,
-                id: result._id
-            };
-            console.log("Your data are: " + req.session.user);
-        }
-    });
+    if(req.body.Email) {
+        User.findOne(
+            {"email": req.body.Email},
+            '_id name email',
+            function(err, recordedUser) {
+                if(!err) {
+                    if(!recordedUser) {
+                        res.redirect('/login?404=recordedUser')
+                    } else {
+                        req.session.user = {
+                            "name": recordedUser.name,
+                            "email": recordedUser.email,
+                            "_id": recordedUser._id
+                        };
+                        req.session.loggedin = true;
+                        console.log('Logged in user: ', user);
+                        res.redirect('/user');
+                    }
+                } else {
+                    res.redirect('/login?404=error');
+                }
+            }
+        )
+    } else {
+        res.redirect('/login?404=error');
+    }
 
 };
 
