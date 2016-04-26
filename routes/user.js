@@ -22,7 +22,8 @@ exports.doCreate = function(req, res) {
 
         req.session.user = {
             name: req.body.name,
-            email: req.body.email
+            email: req.body.email,
+            id: req.body._id
         };
 
         req.session.loggedIn = true;
@@ -40,3 +41,30 @@ exports.index = function(req, res) {
       res.redirect('/login');
   }
 };
+
+exports.login = function(req, res) {
+    res.render('login');
+};
+
+exports.doLogin = function(req, res) {
+  if(req.body.email === req.session.user.email) {
+      res.send('you are loged in');
+  } else {
+      res.redirect('/login');
+  };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

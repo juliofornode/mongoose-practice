@@ -1,0 +1,10 @@
+extend layout
+
+block content
+  h3="this is the h3 tag text"
+  form(id="loginForm" method="post" action="")
+    label(for="Email") Returning users enter email:
+    input(type="email" id="Email" name="Email")
+    input(type="submit" value="submit")
+  p
+    a(href="/user/new") New users create a User Profile

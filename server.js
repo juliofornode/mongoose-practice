@@ -53,6 +53,10 @@ app.get('/', routes.index);
 
 //USER ROUTES - current user is stored in session, so we do not need to use :user_id
 
+//Login
+app.get('/login', user.login);
+app.post('/login', user.doLogin);
+
 //Create User profile
 app.get('/user/new', user.create);
 app.post('/user/new', user.doCreate);
