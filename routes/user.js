@@ -9,25 +9,28 @@ exports.create = function(req, res) {
 exports.doCreate = function(req, res) {
   User.create({
       name: req.body.name,
-      email: req.body.name,
+      email: req.body.email,
       modifiedOn: Date.now(),
       lastLogin: Date.now()
       },
 
       function(err, result) {
 
-        if(err) console.log("error " + err.code);
+        if(err) {
+            console.log("error " + err.code);
+        } else {
+            console.log("user created: " + result);
 
-        console.log("user created: " + result);
+            req.session.user = {
+                name: req.body.name,
+                email: req.body.email,
+                id: req.body._id
+            };
 
-        req.session.user = {
-            name: req.body.name,
-            email: req.body.email,
-            id: req.body._id
-        };
+            req.session.loggedIn = true;
+            res.redirect('/user');
+        }
 
-        req.session.loggedIn = true;
-        res.redirect('/user');
       });
 };
 
@@ -61,8 +64,8 @@ exports.doLogin = function(req, res) {
                             "email": recordedUser.email,
                             "_id": recordedUser._id
                         };
-                        req.session.loggedin = true;
-                        console.log('Logged in user: ', user);
+                        req.session.loggedIn = true;
+                        console.log('Logged in user: ', recordedUser);
                         res.redirect('/user');
                     }
                 } else {
