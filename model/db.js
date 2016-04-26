@@ -49,6 +49,11 @@ var projectSchema = new mongoose.Schema({
     },
     {collection: 'projectsCollection'});
 
+
+projectSchema.static.findByUserId = function(userId, callback) {
+    Project.find({createdBy: userId}, '_id projectName', {sort: 'modifiedOn'}, callback);
+};
+
 var Project = mongoose.model('Project', projectSchema);
 
 var userOne = new User({
