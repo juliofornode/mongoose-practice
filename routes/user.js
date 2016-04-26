@@ -3,7 +3,7 @@ var User = mongoose.model('User');
 
 
 exports.create = function(req, res) {
-    res.render('user-form', {title: "This is the text for the h1 tag", buttonText: "Hello!"});
+    res.render('user-form', {title: "Sign Up", buttonText: "Sign Up!"});
 };
 
 exports.doCreate = function(req, res) {
