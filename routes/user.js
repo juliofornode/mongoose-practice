@@ -47,12 +47,22 @@ exports.login = function(req, res) {
 };
 
 exports.doLogin = function(req, res) {
-    console.log("you have entered: " + req.body.Email + " and our records show: " + req.session.user.email);
-    if(req.body.Email === req.session.user.email) {
-        res.send('you are loged in');
-    } else {
-        res.redirect('/login');
-  };
+    User.findOne({'email': req.body.Email},
+        '_id name email',
+        function(err, result) {
+        console.log("result :" + result);
+        if(err) {
+            res.send('email not found, try again');
+        } else {
+            req.session.user = {
+                name: result.name,
+                email: result.email,
+                id: result._id
+            };
+            console.log("Your data are: " + req.session.user);
+        }
+    });
+
 };
 
 
